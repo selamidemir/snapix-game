@@ -3,4 +3,4 @@ export const gameTypes = {
     cars: [],
 }
 
-export const cardVisibilityDuration = 3000;
+export const cardVisibilityDuration = 2000;

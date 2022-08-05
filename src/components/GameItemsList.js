@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import GameItem from './GameItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { endGame, getCard1, getCard2, getFoundCards, getGameItems, setCardsFound, setCardsNotFound } from '../redux/gameSlice';
-import { Container } from 'react-bootstrap';
 
 function GameItemsList() {
   const dispatch = useDispatch();
@@ -26,14 +25,12 @@ function GameItemsList() {
   }, [dispatch, foundCards]);
 
   return (
-    <Container className='w-75'>
-   
+    <div>
         {
           gameItems.map((item, key) => <GameItem item={item} key={key} />)
         }
-        <hr />
-
-    </Container>
+        
+    </div>
   )
 }
 

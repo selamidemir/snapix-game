@@ -11,11 +11,17 @@ export const gameSlice = createSlice({
         card2: {},
         foundCards: 0,
         score: 0,
+        countdown: false,
+        gamer: JSON.parse(localStorage.getItem('snapixGamer')) || { id: nanoid},
     },
     reducers: {
         startNewGame: (state, action) => {
             state.gameStatus = 'started';
-            const gameItems = gameTypes[state.gameType];
+            state.score = 0;
+            state.foundCards = 0;
+            state.countdown = false;
+            state.items = [];
+            const gameItems = [...gameTypes[state.gameType]];
             gameItems.splice(0, 0, ...gameItems);
             while (gameItems.length) {
                 let card = {
@@ -26,6 +32,10 @@ export const gameSlice = createSlice({
                 state.items.push(card);
             }
         },
+        setGamer: (state, action) => {
+            state.gamer = action.payload;
+            localStorage.setItem('snapixGamer', JSON.stringify(action.payload));
+        },
         setCard: (state, action) => {
             if (!state.card1.name) {
                 state.card1.id = action.payload.id;
@@ -33,11 +43,13 @@ export const gameSlice = createSlice({
             } else if (state.card1.name && !state.card2.name) {
                 state.card2.id = action.payload.id;
                 state.card2.name = action.payload.name;
+                state.countdown = true;
             }
         },
         unSetCard: (state, action) => {
-            state.card1 = {}
-            state.card2 = {}
+            state.card1 = {};
+            state.card2 = {};
+            state.countdown = false;
         },
         setCardsFound: (state, action) => {
             state.foundCards += 2;
@@ -55,7 +67,13 @@ export const gameSlice = createSlice({
             state.score -= 10;
         },
         endGame: (state, action) => {
-            state.gameStatus = 'waiting';
+            state.gameStatus = 'finished';
+            state.countdown = false;
+            state.items = [];
+            state.foundCards = 0;
+        },
+        setGameStatus: (state, action) => {
+            state.gameStatus = action.payload;
         }
     }
 });
@@ -66,6 +84,8 @@ export const getCard2 = state => state.game.card2;
 export const getFoundCards = state => state.game.foundCards;
 export const getScore = state => state.game.score;
 export const getGameStatus = state => state.game.gameStatus;
+export const getCountdown = state => state.game.countdown;
+export const getGamer = state => state.game.gamer;
 
-export const { startNewGame, setCard, unSetCard, setCardsFound, setCardsNotFound, endGame } = gameSlice.actions;
+export const { startNewGame, setGamer, setCard, unSetCard, setCardsFound, setCardsNotFound, endGame, setGameStatus } = gameSlice.actions;
 export default gameSlice.reducer;

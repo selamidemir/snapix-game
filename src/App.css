@@ -1,31 +1,57 @@
 :root {
-    /* CSS HEX */
-    --pink-lavender: #cdb4dbff;
-    --orchid-pink: #ffc8ddff;
-    --nadeshiko-pink: #ffafccff;
-    --uranian-blue: #bde0feff;
-    --baby-blue-eyes: #a2d2ffff;
-    
+  /* CSS HEX */
+  --pink-lavender: #cdb4dbff;
+  --orchid-pink: #ffc8ddff;
+  --nadeshiko-pink: #ffafccff;
+  --uranian-blue: #bde0feff;
+  --baby-blue-eyes: #a2d2ffff;
+
+}
+
+@font-face {
+  font-family: "AbrilFatface";
+  src: url(../public/AbrilFatface-Regular.ttf) format("truetype");
 }
 
 body {
-  background-color: var(--pink-lavender);
+  background-color: dimgray;
+  background-image: url(../public/images/backgrounds/background-2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .header {
-  background-color: whitesmoke;
+  background-color: lemonchiffon;
   height: 99px;
+  background-image: url(../public/images/backgrounds/background-2.jpg);
+}
+
+.header h1 {
+  font-family: AbrilFatface;
+  font-size: 55px;
+  color: royalblue;
+  text-shadow: 2px 2px dimgray;
+}
+
+.header-a-button {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.header-a-button:hover {
+  text-decoration: underline;
 }
 
 .game-container {
   background-color: white;
-  height: 73vh;
+  background-image: url(../public/images/backgrounds/background-2.jpg);
+  min-height: 555px;
 }
 
 .game-item-card {
   float: left;
-  height: 5rem;
-  width: 5rem;
+  height: 63px;
+  width: 63px;
   cursor: pointer;
 }
 
@@ -34,11 +60,31 @@ body {
   background-color: azure;
 }
 
+.game-item-card:hover {
+  animation-name: grow;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
+}
+
 .footer {
-  position: absolute;
-  bottom: 0;
+  /* position: absolute;
+  bottom: 0; */
   width: 100%;
   background-color: var(--baby-blue-eyes);
   height: 101px;
 }
 
+.square {
+
+  border-radius: 8px;
+  transform: scale(1) rotate(0);
+}
+
+.square.has-transition {
+  transition: transform 250ms ease-in-out 0s;
+}
+
+.square:is(:hover, :focus) {
+  transform: scale(1.3) rotate(0deg);
+}
