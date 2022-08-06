@@ -50,8 +50,8 @@ body {
 
 .game-item-card {
   float: left;
-  height: 63px;
-  width: 63px;
+  height: 59px;
+  width: 59px;
   cursor: pointer;
 }
 

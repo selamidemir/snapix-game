@@ -10,7 +10,7 @@ import GameWaiting from './GameWaiting';
 function Content() {
   const gameStatus = useSelector(getGameStatus);
   return (
-    <Container className='game-container mt-3 pt-3 shadow rounded d-md-flex justify-content-between' style={{maxWidth: '720px'}}>
+    <Container className='game-container mt-3 pt-3 shadow rounded d-md-flex justify-content-between w-sm-100' style={{maxWidth: '720px'}}>
       
       <div style={{ maxWidth: '400px', minWidth: '400px' }}>
         {gameStatus === 'started' && <ItemsList />}
