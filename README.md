@@ -2,6 +2,10 @@
 
 The snappix is a game where the player will match pictures. 
 
+## Demo
+
+You play the snappix game now, please [click here](https://snapix.netlify.app/ "Snappix Game").
+
 ## Tecnolojies
 
 - JavaScript
